@@ -1,7 +1,7 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    FMAC/FMAC_Adaptive_FIR_AN5305/Src/stm32g4xx_it.c
+  * @file    FMAC/FMAC_FIR_DMAToIT/Src/stm32g4xx_it.c
   * @author  MCD Application Team
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and
@@ -26,6 +26,7 @@
 #include "stm32g4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -35,7 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+ 
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,7 +62,6 @@
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_fmac_preload;
 extern DMA_HandleTypeDef hdma_fmac_write;
-extern DMA_HandleTypeDef hdma_fmac_read;
 extern FMAC_HandleTypeDef hfmac;
 /* USER CODE BEGIN EV */
 
@@ -237,24 +237,6 @@ void DMA1_Channel2_IRQHandler(void)
   GPIOC->BSRR = (1<<(11+16)); // end + 16
 
   /* USER CODE END DMA1_Channel2_IRQn 1 */
-}
-
-/**
-  * @brief This function handles DMA1 channel3 global interrupt.
-  */
-void DMA1_Channel3_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Channel3_IRQn 0 */
-
-	GPIOC->BSRR = (1<<11); // start
-
-  /* USER CODE END DMA1_Channel3_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_fmac_read);
-  /* USER CODE BEGIN DMA1_Channel3_IRQn 1 */
-
-  GPIOC->BSRR = (1<<(11+16)); // end + 16
-
-  /* USER CODE END DMA1_Channel3_IRQn 1 */
 }
 
 /**
