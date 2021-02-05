@@ -55,7 +55,7 @@ FMAC_FilterConfigTypeDef sFmacConfig;
 /* Array of filter coefficients B (feed-forward taps) in Q1.15 format */
 static int16_t aFilterCoeffB[COEFF_VECTOR_B_SIZE] =
 {
-    2212,  8848, 13272,  8848,  2212
+		2212,  8848, 13272,  8848,  2212
 };
 
 /* Array of input values in Q1.15 format (in four parts in order to write new data during the calculation) */
@@ -363,81 +363,81 @@ int main(void)
     Error_Handler();
   }
 
-  /*## Append the 2nd part of the input data #################################*/
-  CurrentInputArraySize = INPUT_ARRAY_2_SIZE;
-  if (HAL_FMAC_AppendFilterData(&hfmac,
-                                aInputValues2,
-                                &CurrentInputArraySize) != HAL_OK)
-  {
-    Error_Handler();
-  }
+//  /*## Append the 2nd part of the input data #################################*/
+//  CurrentInputArraySize = INPUT_ARRAY_2_SIZE;
+//  if (HAL_FMAC_AppendFilterData(&hfmac,
+//                                aInputValues2,
+//                                &CurrentInputArraySize) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//
+//  printf("HAL_FMAC_AppendFilterData : aInputValues2\n");
+//  for (uint16_t Index=0; Index<INPUT_ARRAY_2_SIZE; Index++)
+//  {
+//    printf("%d %d\n",Index, aInputValues2[Index]);
+//  }
+//
+//  /*## Poll to write the 2nd part of the input data ##########################*/
+//  if (HAL_FMAC_PollFilterData(&hfmac, POLLING_TIMEOUT) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//
+//  /*## Append the 3rd part of the input data #################################*/
+//  CurrentInputArraySize = INPUT_ARRAY_3_SIZE;
+//  if (HAL_FMAC_AppendFilterData(&hfmac,
+//                                aInputValues3,
+//                                &CurrentInputArraySize) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//
+//  printf("HAL_FMAC_AppendFilterData : aInputValues3\n");
+//  for (uint16_t Index=0; Index<INPUT_ARRAY_3_SIZE; Index++)
+//  {
+//    printf("%d %d\n",Index, aInputValues3[Index]);
+//  }
+//
+//  /*## Poll to write the 3rd part of the input data ##########################*/
+//  if (HAL_FMAC_PollFilterData(&hfmac, POLLING_TIMEOUT) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//
+//  /*## Append the 4th part of the input data #################################*/
+//  CurrentInputArraySize = INPUT_ARRAY_4_SIZE;
+//  if (HAL_FMAC_AppendFilterData(&hfmac,
+//                                aInputValues4,
+//                                &CurrentInputArraySize) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//
+//  printf("HAL_FMAC_AppendFilterData : aInputValues4\n");
+//  for (uint16_t Index=0; Index<INPUT_ARRAY_4_SIZE; Index++)
+//  {
+//    printf("%d %d\n",Index, aInputValues4[Index]);
+//  }
+//
+//  /*## Poll to write the 4th part of the input data ##########################*/
+//  if (HAL_FMAC_PollFilterData(&hfmac, POLLING_TIMEOUT) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
 
-  printf("HAL_FMAC_AppendFilterData : aInputValues2\n");
-  for (uint16_t Index=0; Index<INPUT_ARRAY_2_SIZE; Index++)
-  {
-    printf("%d %d\n",Index, aInputValues2[Index]);
-  }
-
-  /*## Poll to write the 2nd part of the input data ##########################*/
-  if (HAL_FMAC_PollFilterData(&hfmac, POLLING_TIMEOUT) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /*## Append the 3rd part of the input data #################################*/
-  CurrentInputArraySize = INPUT_ARRAY_3_SIZE;
-  if (HAL_FMAC_AppendFilterData(&hfmac,
-                                aInputValues3,
-                                &CurrentInputArraySize) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  printf("HAL_FMAC_AppendFilterData : aInputValues3\n");
-  for (uint16_t Index=0; Index<INPUT_ARRAY_3_SIZE; Index++)
-  {
-    printf("%d %d\n",Index, aInputValues3[Index]);
-  }
-
-  /*## Poll to write the 3rd part of the input data ##########################*/
-  if (HAL_FMAC_PollFilterData(&hfmac, POLLING_TIMEOUT) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /*## Append the 4th part of the input data #################################*/
-  CurrentInputArraySize = INPUT_ARRAY_4_SIZE;
-  if (HAL_FMAC_AppendFilterData(&hfmac,
-                                aInputValues4,
-                                &CurrentInputArraySize) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  printf("HAL_FMAC_AppendFilterData : aInputValues4\n");
-  for (uint16_t Index=0; Index<INPUT_ARRAY_4_SIZE; Index++)
-  {
-    printf("%d %d\n",Index, aInputValues4[Index]);
-  }
-
-  /*## Poll to write the 4th part of the input data ##########################*/
-  if (HAL_FMAC_PollFilterData(&hfmac, POLLING_TIMEOUT) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /*## Wait for the end of the handling (no new data written) ################*/
-  /*  For simplicity reasons, this example is just waiting till the end of the
-      calculation, but the application may perform other tasks while the operation
-      is ongoing. */
-  while(OutputDataReadyCallbackCount < DATA_RDY_CALLBACK_COUNT)
-  {
-    if(ErrorCount != 0)
-    {
-      /* Processing Error */
-      Error_Handler();
-    }
-  }
+//  /*## Wait for the end of the handling (no new data written) ################*/
+//  /*  For simplicity reasons, this example is just waiting till the end of the
+//      calculation, but the application may perform other tasks while the operation
+//      is ongoing. */
+//  while(OutputDataReadyCallbackCount < DATA_RDY_CALLBACK_COUNT)
+//  {
+//    if(ErrorCount != 0)
+//    {
+//      /* Processing Error */
+//      Error_Handler();
+//    }
+//  }
 
   /*## Stop the calculation of FIR filter in polling/DMA mode ################*/
   if (HAL_FMAC_FilterStop(&hfmac) != HAL_OK)
@@ -458,21 +458,21 @@ int main(void)
   for (Index = 0; Index < OUTPUT_ARRAY_1_SIZE; Index++)
   {
 	  printf("%d %d\n",Index, aCalculatedFilteredData1[Index]);
-    if (aCalculatedFilteredData1[Index]  != aRefFilteredData[Index])
-    {
-      /* Processing Error */
-      Error_Handler();
-    }
+//    if (aCalculatedFilteredData1[Index]  != aRefFilteredData[Index])
+//    {
+//      /* Processing Error */
+//      Error_Handler();
+//    }
   }
   printf("aCalculatedFilteredData2\n");
   for (Index = 0; Index < OUTPUT_ARRAY_2_SIZE; Index++)
   {
 	  printf("%d %d\n",Index, aCalculatedFilteredData2[Index]);
-    if (aCalculatedFilteredData2[Index]  != aRefFilteredData[OUTPUT_ARRAY_1_SIZE + Index])
-    {
-      /* Processing Error */
-      Error_Handler();
-    }
+//    if (aCalculatedFilteredData2[Index]  != aRefFilteredData[OUTPUT_ARRAY_1_SIZE + Index])
+//    {
+//      /* Processing Error */
+//      Error_Handler();
+//    }
   }
 
   /* There is no error in the output values: Turn LED2 on */
@@ -672,21 +672,21 @@ void HAL_FMAC_OutputDataReadyCallback(FMAC_HandleTypeDef *hfmac)
 {
   OutputDataReadyCallbackCount++;
 
-  if (OutputDataReadyCallbackCount == 1)
-  {
-    ExpectedCalculatedFilteredDataSize = OUTPUT_ARRAY_2_SIZE;
-    if (HAL_FMAC_ConfigFilterOutputBuffer(hfmac,
-                                          aCalculatedFilteredData2,
-                                          &ExpectedCalculatedFilteredDataSize) != HAL_OK)
-    {
-      ErrorCount++;
-    }
-  }
-  else
-  {
-    /* No more data will be read, disable the FMAC read interrupt */
-    __HAL_FMAC_DISABLE_IT(hfmac, FMAC_IT_RIEN);
-  }
+//  if (OutputDataReadyCallbackCount == 1)
+//  {
+//    ExpectedCalculatedFilteredDataSize = OUTPUT_ARRAY_2_SIZE;
+//    if (HAL_FMAC_ConfigFilterOutputBuffer(hfmac,
+//                                          aCalculatedFilteredData2,
+//                                          &ExpectedCalculatedFilteredDataSize) != HAL_OK)
+//    {
+//      ErrorCount++;
+//    }
+//  }
+//  else
+//  {
+//    /* No more data will be read, disable the FMAC read interrupt */
+//    __HAL_FMAC_DISABLE_IT(hfmac, FMAC_IT_RIEN);
+//  }
 }
 
 /**

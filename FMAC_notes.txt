@@ -1,0 +1,13 @@
+Load X1 buffer (RM0440 pg. 494)
+This function pre-loads the X1 buffer with N values, starting from the address in X1_BASE.
+Successive writes to the FMAC_WDATA register load the write data into the X1 buffer and
+increment the write address. The write pointer points to the address X1_BASE + N when the
+function completes.
+== check detail of the function how it writes successively.
+
+Load X2 buffer (RM0440 pg 495)
+This function pre-loads the X2 buffer with N + M values, starting from the address in
+X2_BASE. Successive writes to the FMAC_WDATA register load the write data into the X2
+buffer and increment the write address.
+== check detail of the function how it writes successively.
+
