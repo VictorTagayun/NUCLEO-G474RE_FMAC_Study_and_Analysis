@@ -5,6 +5,6 @@ Added this readme
 
 NUCLEO-G474RE_FMAC_Adaptive_FIR_AN5305 = first try
 NUCLEO-G474RE_FMAC_FIR_DMAToIT = no activiry
-NUCLEO-G474RE_FMAC_FIR_PollingToIT = modify to printout data after FMAC
+NUCLEO-G474RE_FMAC_FIR_PollingToIT = modify to printout data after FMAC, added waveforms
 
 
