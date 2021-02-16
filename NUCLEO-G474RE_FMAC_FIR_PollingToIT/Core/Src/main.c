@@ -336,11 +336,14 @@ int main(void)
   sFmacConfig.Q                 = FILTER_PARAM_Q_NOT_USED;
   sFmacConfig.R                 = GAIN;
 
+  GPIOC->BSRR = (1<<8); // start
+
   if (HAL_FMAC_FilterConfig(&hfmac, &sFmacConfig) != HAL_OK)
   {
     /* Configuration Error */
     Error_Handler();
   }
+//  GPIOC->BSRR = (1<<(8+16)); // end + 16
 
   /*## Preload the input and output buffers ##################################*/
   if (HAL_FMAC_FilterPreload(&hfmac, aInputValues1, INPUT_ARRAY_1_SIZE, NULL, 0) != HAL_OK)
@@ -348,20 +351,23 @@ int main(void)
     /* Configuration Error */
     Error_Handler();
   }
+//  GPIOC->BSRR = (1<<(8+16)); // end + 16
+//  printf("HAL_FMAC_FilterPreload : aInputValues1\n");
+//  for (uint16_t Index=0; Index<INPUT_ARRAY_1_SIZE; Index++)
+//  {
+//    printf("%d %d\n",Index, aInputValues1[Index]);
+//  }
 
-  printf("HAL_FMAC_FilterPreload : aInputValues1\n");
-  for (uint16_t Index=0; Index<INPUT_ARRAY_1_SIZE; Index++)
-  {
-    printf("%d %d\n",Index, aInputValues1[Index]);
-  }
-
-  /*## Start calculation of FIR filter in polling/IT mode ####################*/
+//  /*## Start calculation of FIR filter in polling/IT mode ####################*/
   ExpectedCalculatedFilteredDataSize = OUTPUT_ARRAY_1_SIZE;
   if (HAL_FMAC_FilterStart(&hfmac, aCalculatedFilteredData1, &ExpectedCalculatedFilteredDataSize) != HAL_OK)
   {
     /* Processing Error */
     Error_Handler();
   }
+
+//  GPIOC->BSRR = (1<<(8+16)); // end + 16
+
 
 //  /*## Append the 2nd part of the input data #################################*/
 //  CurrentInputArraySize = INPUT_ARRAY_2_SIZE;
@@ -446,6 +452,8 @@ int main(void)
     Error_Handler();
   }
 
+  GPIOC->BSRR = (1<<(8+16)); // end + 16
+
   /*## Check the final error status ##########################################*/
   if(ErrorCount != 0)
   {
@@ -475,8 +483,7 @@ int main(void)
 //    }
   }
 
-  /* There is no error in the output values: Turn LED2 on */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, SET);
+
 
   /* USER CODE END 2 */
 
@@ -484,6 +491,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  /* There is no error in the output values: Turn LED2 on */
+	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	  HAL_Delay(200);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -634,7 +644,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8|GPIO_PIN_11, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_5;
@@ -643,11 +653,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PC11 */
-  GPIO_InitStruct.Pin = GPIO_PIN_11;
+  /*Configure GPIO pins : PC8 PC11 */
+  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_11;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
 }
