@@ -8,4 +8,15 @@
     Added this readme
 
 ### 2021-02-06  
-    Added waveforms
+    Added waveforms on the duration of each codes  
+	
+### 2021-02-17  
+	Tests are done on **NUCLEO-G474RE_FMAC_FIR_PollingToIT**  
+	Use HSE instead of HSI  
+    Use _aCalculatedFilteredData1_ and _aCalculatedFilteredData1_ and append data  
+	Offset the signal so all of it are positive and no negative before feeding to the FMAC  
+	changed GAIN to 0, GAIN = 1  
+	Filter using _Low Pass_ and _High Pass_
+	Exported to excel and graphs
+	
+	

@@ -53,10 +53,18 @@ UART_HandleTypeDef hlpuart1;
 FMAC_FilterConfigTypeDef sFmacConfig;
 
 /* Array of filter coefficients B (feed-forward taps) in Q1.15 format */
+// Low Pass Filter
+//static int16_t aFilterCoeffB[COEFF_VECTOR_B_SIZE] =
+//{
+//		2212,  8848, 13272,  8848,  2212
+//};
+
+// High Pass filter
 static int16_t aFilterCoeffB[COEFF_VECTOR_B_SIZE] =
 {
-		2212,  8848, 13272,  8848,  2212
+		4612, -12078, 16028, -12078, 4612
 };
+
 
 /* Array of input values in Q1.15 format (in four parts in order to write new data during the calculation) */
 static int16_t aInputValues1[INPUT_ARRAY_1_SIZE] =
@@ -336,7 +344,35 @@ int main(void)
   sFmacConfig.Q                 = FILTER_PARAM_Q_NOT_USED;
   sFmacConfig.R                 = GAIN;
 
-  GPIOC->BSRR = (1<<8); // start
+  for (Index = 0; Index < INPUT_ARRAY_1_SIZE; Index++)
+  {
+	  aInputValues1[Index] = (aInputValues1[Index] >> 1) + 16383;
+  }
+  printf("New aInputValues1\n");
+  for (Index = 0; Index < INPUT_ARRAY_1_SIZE; Index++)
+  {
+	  printf("%d %d\n",Index, aInputValues1[Index]);
+  }
+
+
+  for (Index = 0; Index < INPUT_ARRAY_2_SIZE; Index++)
+  {
+	  aInputValues2[Index] = (aInputValues2[Index] >> 1) + 16383;
+  }
+  printf("New aInputValues2\n");
+  for (Index = 0; Index < INPUT_ARRAY_2_SIZE; Index++)
+  {
+	  printf("%d %d\n",Index, aInputValues2[Index]);
+  }
+
+
+  printf("aFilterCoeffB\n");
+  for (Index = 0; Index < COEFF_VECTOR_B_SIZE; Index++)
+  {
+	  printf("%d %d\n",Index, aFilterCoeffB[Index]);
+  }
+
+//  GPIOC->BSRR = (1<<8); // start
 
   if (HAL_FMAC_FilterConfig(&hfmac, &sFmacConfig) != HAL_OK)
   {
@@ -369,27 +405,27 @@ int main(void)
 //  GPIOC->BSRR = (1<<(8+16)); // end + 16
 
 
-//  /*## Append the 2nd part of the input data #################################*/
-//  CurrentInputArraySize = INPUT_ARRAY_2_SIZE;
-//  if (HAL_FMAC_AppendFilterData(&hfmac,
-//                                aInputValues2,
-//                                &CurrentInputArraySize) != HAL_OK)
-//  {
-//    Error_Handler();
-//  }
-//
+  /*## Append the 2nd part of the input data #################################*/
+  CurrentInputArraySize = INPUT_ARRAY_2_SIZE;
+  if (HAL_FMAC_AppendFilterData(&hfmac,
+                                aInputValues2,
+                                &CurrentInputArraySize) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
 //  printf("HAL_FMAC_AppendFilterData : aInputValues2\n");
 //  for (uint16_t Index=0; Index<INPUT_ARRAY_2_SIZE; Index++)
 //  {
 //    printf("%d %d\n",Index, aInputValues2[Index]);
 //  }
-//
-//  /*## Poll to write the 2nd part of the input data ##########################*/
-//  if (HAL_FMAC_PollFilterData(&hfmac, POLLING_TIMEOUT) != HAL_OK)
-//  {
-//    Error_Handler();
-//  }
-//
+
+  /*## Poll to write the 2nd part of the input data ##########################*/
+  if (HAL_FMAC_PollFilterData(&hfmac, POLLING_TIMEOUT) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
 //  /*## Append the 3rd part of the input data #################################*/
 //  CurrentInputArraySize = INPUT_ARRAY_3_SIZE;
 //  if (HAL_FMAC_AppendFilterData(&hfmac,
@@ -452,7 +488,7 @@ int main(void)
     Error_Handler();
   }
 
-  GPIOC->BSRR = (1<<(8+16)); // end + 16
+//  GPIOC->BSRR = (1<<(8+16)); // end + 16
 
   /*## Check the final error status ##########################################*/
   if(ErrorCount != 0)
@@ -517,12 +553,11 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV4;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV6;
   RCC_OscInitStruct.PLL.PLLN = 85;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
@@ -637,8 +672,9 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);

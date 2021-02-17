@@ -93,7 +93,7 @@ void Error_Handler(void);
 #define FILTER_PARAM_Q_NOT_USED 0
 
 /* Filter parameter R: gain in the range [0:7] */
-#define GAIN                    1
+#define GAIN                    0
 
 
 
