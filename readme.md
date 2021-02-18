@@ -49,7 +49,7 @@
   Very low pass filter coeffs  
   ![Very low pass filter coeffs](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_VLPF_coeffs.png)  
   
-* ### Now we add DC offset to simulate like a voltage feedback where input is only positive  
+* ### Now we add DC offset to simulate input going to the ADC pin like a voltage feedback where input is only positive  
 
   Input Int w/ offset  
   ![Input int w/ offset](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data&plot/DC_offset_Int_Input.png?raw=true)  
