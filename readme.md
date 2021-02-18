@@ -1,4 +1,4 @@
-# Test and study how FMAC works  
+# Test and study how FMAC (Filter Math ACcelerator) works  
  * **NUCLEO-G474RE_FMAC_Adaptive_FIR_AN5305** = first try but did not proceed, just print out data of 2 tones  
  * **NUCLEO-G474RE_FMAC_FIR_DMAToIT** = no activiry  
  * **NUCLEO-G474RE_FMAC_FIR_PollingToIT** = modify to printout data after FMAC, added waveforms, added excel plot and analysis
