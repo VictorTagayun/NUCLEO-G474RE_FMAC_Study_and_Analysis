@@ -65,6 +65,8 @@ void Error_Handler(void);
 /* Size of the data arrays */
 #define ARRAY_SIZE              508
 
+#define Sine1k_15k_SIZE      96
+
 /* Size of the preloaded input data array (size <= INPUT_BUFFER_SIZE) */
 #define INPUT_ARRAY_1_SIZE      100
 

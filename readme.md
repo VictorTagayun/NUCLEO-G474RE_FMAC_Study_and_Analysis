@@ -19,7 +19,10 @@
  * Exported to excel and graphs
 
 ### 2021-02-18  
- * uploaded excel waveforms
+ * uploaded excel waveforms  
+ 
+### 2021-03-03  
+ * Added Sine1k_15k from [NUCLEO-G474RE_2tonegenerator](https://github.com/VictorTagayun/NUCLEO-G474RE_DAC_DMA_LL-HAL_TIM6/blob/5ec467271cf4406628f2ed793f6c2472c98abc50/NUCLEO-G474RE_2tonegenerator/Core/Inc/waveforms.h#L9) and check if still can apply filter.
 
 ## Excel waveforms  
 
@@ -72,4 +75,11 @@
   High pass filter coeffs  
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/DC_offset_Int_HPF_coeffs.png)
   
-  
+  Sine1k_15k input 
+  ![]()
+
+  Sine1k_15k output HPF  
+  ![]()
+
+  Sine1k_15k output LPF  
+  ![]()

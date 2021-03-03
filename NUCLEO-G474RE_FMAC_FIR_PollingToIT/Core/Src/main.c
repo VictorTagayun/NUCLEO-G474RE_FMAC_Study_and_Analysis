@@ -54,16 +54,16 @@ FMAC_FilterConfigTypeDef sFmacConfig;
 
 /* Array of filter coefficients B (feed-forward taps) in Q1.15 format */
 // Low Pass Filter
-//static int16_t aFilterCoeffB[COEFF_VECTOR_B_SIZE] =
-//{
-//		2212,  8848, 13272,  8848,  2212
-//};
-
-// High Pass filter
 static int16_t aFilterCoeffB[COEFF_VECTOR_B_SIZE] =
 {
-		4612, -12078, 16028, -12078, 4612
+		2212,  8848, 13272,  8848,  2212
 };
+
+// High Pass filter
+//static int16_t aFilterCoeffB[COEFF_VECTOR_B_SIZE] =
+//{
+//		4612, -12078, 16028, -12078, 4612
+//};
 
 
 /* Array of input values in Q1.15 format (in four parts in order to write new data during the calculation) */
@@ -130,6 +130,22 @@ static int16_t aInputValues4[INPUT_ARRAY_4_SIZE] =
    21858,  8779, 24542,  8504, 21311, 11564, 13628, 15457,  5013, 16673,
     -946, 12833, -2600,  4200, -1080, -6342,   514,-14828,  -925,-18386,
    -6540,-16771
+};
+
+static int16_t Sine1k_15k[] =
+{
+1861, 2597, 1744, 2099, 3102, 2379, 2300, 3419,
+2936, 2435, 3499, 3329, 2482, 3329, 3499, 2435,
+2936, 3419, 2300, 2379, 3102, 2099, 1744, 2597,
+1861, 1126, 1979, 1624,  620, 1343, 1423,  304,
+787, 1288,  224,  394, 1241,  394,  224, 1288,
+787,  304, 1423, 1343,  620, 1624, 1979, 1126,
+1861, 2597, 1744, 2099, 3102, 2379, 2300, 3419,
+2936, 2435, 3499, 3329, 2482, 3329, 3499, 2435,
+2936, 3419, 2300, 2379, 3102, 2099, 1744, 2597,
+1861, 1126, 1979, 1624,  620, 1343, 1423,  304,
+787, 1288,  224,  394, 1241,  394,  224, 1288,
+787,  304, 1423, 1343,  620, 1624, 1979, 1126
 };
 
 /* Array of calculated filtered data in Q1.15 format (two parts) */
@@ -344,27 +360,33 @@ int main(void)
   sFmacConfig.Q                 = FILTER_PARAM_Q_NOT_USED;
   sFmacConfig.R                 = GAIN;
 
-  for (Index = 0; Index < INPUT_ARRAY_1_SIZE; Index++)
-  {
-	  aInputValues1[Index] = (aInputValues1[Index] >> 1) + 16383;
-  }
-  printf("New aInputValues1\n");
-  for (Index = 0; Index < INPUT_ARRAY_1_SIZE; Index++)
-  {
-	  printf("%d %d\n",Index, aInputValues1[Index]);
-  }
+
+//  for (Index = 0; Index < INPUT_ARRAY_1_SIZE; Index++)
+//  {
+//	  aInputValues1[Index] = (aInputValues1[Index] >> 1) + 16383;
+//  }
+//  printf("New aInputValues1\n");
+//  for (Index = 0; Index < INPUT_ARRAY_1_SIZE; Index++)
+//  {
+//	  printf("%d %d\n",Index, aInputValues1[Index]);
+//  }
 
 
-  for (Index = 0; Index < INPUT_ARRAY_2_SIZE; Index++)
-  {
-	  aInputValues2[Index] = (aInputValues2[Index] >> 1) + 16383;
-  }
-  printf("New aInputValues2\n");
-  for (Index = 0; Index < INPUT_ARRAY_2_SIZE; Index++)
-  {
-	  printf("%d %d\n",Index, aInputValues2[Index]);
-  }
+//  for (Index = 0; Index < INPUT_ARRAY_2_SIZE; Index++)
+//  {
+//	  aInputValues2[Index] = (aInputValues2[Index] >> 1) + 16383;
+//  }
+//  printf("New aInputValues2\n");
+//  for (Index = 0; Index < INPUT_ARRAY_2_SIZE; Index++)
+//  {
+//	  printf("%d %d\n",Index, aInputValues2[Index]);
+//  }
 
+  printf("Sine1k_15k\n");
+  for (Index = 0; Index < Sine1k_15k_SIZE; Index++)
+  {
+	  printf("%d %d\n",Index, Sine1k_15k[Index]);
+  }
 
   printf("aFilterCoeffB\n");
   for (Index = 0; Index < COEFF_VECTOR_B_SIZE; Index++)
@@ -382,7 +404,7 @@ int main(void)
 //  GPIOC->BSRR = (1<<(8+16)); // end + 16
 
   /*## Preload the input and output buffers ##################################*/
-  if (HAL_FMAC_FilterPreload(&hfmac, aInputValues1, INPUT_ARRAY_1_SIZE, NULL, 0) != HAL_OK)
+  if (HAL_FMAC_FilterPreload(&hfmac, Sine1k_15k, Sine1k_15k_SIZE, NULL, 0) != HAL_OK)
   {
     /* Configuration Error */
     Error_Handler();
@@ -406,9 +428,9 @@ int main(void)
 
 
   /*## Append the 2nd part of the input data #################################*/
-  CurrentInputArraySize = INPUT_ARRAY_2_SIZE;
+  CurrentInputArraySize = Sine1k_15k_SIZE;
   if (HAL_FMAC_AppendFilterData(&hfmac,
-                                aInputValues2,
+                                Sine1k_15k,
                                 &CurrentInputArraySize) != HAL_OK)
   {
     Error_Handler();
@@ -529,7 +551,7 @@ int main(void)
   {
 	  /* There is no error in the output values: Turn LED2 on */
 	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-	  HAL_Delay(200);
+	  HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -758,7 +780,7 @@ void Error_Handler(void)
   {
     /* LED2 is blinking */
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    HAL_Delay(500);
+    HAL_Delay(1000);
   }
   /* USER CODE END Error_Handler_Debug */
 }
