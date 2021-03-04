@@ -75,11 +75,14 @@
   High pass filter coeffs  
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/DC_offset_Int_HPF_coeffs.png)
   
-  Sine1k_15k input 
-  ![]()
+  Sine1k_15k input Line  
+  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/Sine48_1k_15k_line.png)
+  
+  Sine1k_15k input Bar  
+  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/Sine48_1k_15k_bar.png)
 
   Sine1k_15k output HPF  
-  ![]()
+  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/Sine48_1k_15k_output_HPF.png)
 
   Sine1k_15k output LPF  
-  ![]()
+  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/Sine48_1k_15k_output_LPF.png)
