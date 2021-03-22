@@ -111,7 +111,7 @@
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/Sine48_1k_15k_output_LPF.png)
 
 
-### Other Reference :
+### Other References :
 
 [STM32F429I-DISC1_FIR_FFT_wth_Print Project](https://github.com/VictorTagayun/STM32F429I-DISC1_CMSIS_DSP_Tutorial)
 
