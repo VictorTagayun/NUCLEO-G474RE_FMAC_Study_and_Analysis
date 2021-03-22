@@ -36,29 +36,31 @@
   
   ![Input FFT ](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_Input_FFT.png)  
   
+  Low pass filter coeffs  
+  
+  ![Low pass filter coeffs](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_LPF_coeffs.png)  
+
   Low pass filter output  
   
   ![Low pass filter output](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_LPF_output.png)  
   
-  Low pass filter coeffs  
-  
-  ![Low pass filter coeffs](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_LPF_coeffs.png)  
-  
-  High pass filter output  
-  
-  ![High pass filter output](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_HPF_output.png)  
   
   High pass filter coeffs  
   
   ![High pass filter coeffs](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_HPF_coeffs.png)  
+
+  High pass filter output  
   
-  Very low pass filter  
+  ![High pass filter output](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_HPF_output.png)  
   
-  ![Very low pass filter](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_VLPF_output.png)
   
   Very low pass filter coeffs  
   
   ![Very low pass filter coeffs](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_VLPF_coeffs.png)  
+
+  Very low pass filter  
+  
+  ![Very low pass filter](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_VLPF_output.png)
   
   
 * ### Now add DC offset to simulate input going to the ADC pin like a voltage feedback where input is only positive, These data are not converted to float and all are Q15  
