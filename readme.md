@@ -26,66 +26,90 @@
 
 ## Excel waveforms  
 
-* ### Initially worked on orig data AC Int input then converted to Float  
+* ### Initially worked on original data of AC signal Integer input then converted to Float. This is not necessary as FMAC will process Q15
 
-  Input conveted to Float  
+  Input conveted to Float
+  
   ![Input conveted to float](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_Input.png)  
   
   Input FFT using excel and some arbitrary sampling rate  
+  
   ![Input FFT ](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_Input_FFT.png)  
   
   Low pass filter output  
+  
   ![Low pass filter output](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_LPF_output.png)  
   
   Low pass filter coeffs  
+  
   ![Low pass filter coeffs](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_LPF_coeffs.png)  
   
   High pass filter output  
+  
   ![High pass filter output](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_HPF_output.png)  
   
   High pass filter coeffs  
+  
   ![High pass filter coeffs](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_HPF_coeffs.png)  
   
   Very low pass filter  
+  
   ![Very low pass filter](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_VLPF_output.png)
   
   Very low pass filter coeffs  
+  
   ![Very low pass filter coeffs](https://raw.githubusercontent.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/no_offset_Float_VLPF_coeffs.png)  
   
-* ### Now we add DC offset to simulate input going to the ADC pin like a voltage feedback where input is only positive  
+  
+* ### Now add DC offset to simulate input going to the ADC pin like a voltage feedback where input is only positive, These data are not converted to float and all are Q15  
 
-  Input Int w/ offset  
+  Input Integer w/ offset. Signals are 2 frequencies
+  
   ![Input int w/ offset](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data&plot/DC_offset_Int_Input.png?raw=true)  
   
-  Low pass filter output  
-  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data&plot/DC_offset_Int_LPF_output.png?raw=true)
+
+  Low pass filter coeffs  
   
+  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/DC_offset_Int_LPF_coeffs.png)
+
+  Low pass filter output, high frequency signal is removed  
+  
+  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data&plot/DC_offset_Int_LPF_output.png?raw=true)
+
   Low pass filter output calculated FFT using excel  
+  
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/DC_offset_Int_LPF_output_FFT.png)
   
-  Low pass filter coeffs  
-  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/DC_offset_Int_LPF_coeffs.png)
+
+  High pass filter coeffs  
   
+  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/DC_offset_Int_HPF_coeffs.png)
+
   High pass filter output  
+  
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/DC_offset_Int_HPF_output.png)
   
-  High pass filter output calculated FFT using excel  
+  High pass filter output calculated FFT using excel 
+  
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/DC_offset_Int_HPF_output_FFT.png)
   
-  High pass filter coeffs  
-  ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/DC_offset_Int_HPF_coeffs.png)
   
   Sine1k_15k input Line  
+  
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/Sine48_1k_15k_line.png)
   
   Sine1k_15k input Bar  
+  
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/Sine48_1k_15k_bar.png)
 
   Sine1k_15k output HPF  
+  
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/Sine48_1k_15k_output_HPF.png)
 
   Sine1k_15k output LPF  
+  
   ![](https://github.com/VictorTagayun/NUCLEO-G474RE_FMAC_Study_and_Analysis/blob/main/NUCLEO-G474RE_FMAC_FIR_PollingToIT/captured_data%26plot/Sine48_1k_15k_output_LPF.png)
+
 
 ### Other Reference :
 
@@ -93,8 +117,13 @@
 
 [CMSIS DSP](https://github.com/VictorTagayun/NUCLEO-G474RE_CMSIS_DSP_Tutorial)
 
-*Disclaimer:*
+[Use of FMAC for **Real Time** FIR/IIR Filter](https://github.com/VictorTagayun/NUCLEO-G474RE_RealTime_FIR_IIR_FMAC)
 
-*The projects posted here are for learning and educational purposes only.*
+
+*Disclaimer:*
+[Updated Disclaimer](https://github.com/VictorTagayun/GlobalDisclaimer)
+
+*The projects posted here are for my Personal reference, learning and educational purposes only.*
 *The purpose of a certain project may be for testing a module and may be just a part of a whole project.*
 *It should not be used in a production or commercial environment.*
+*Any cause of injury and/or death is the sole responsibility of the user.*
